@@ -1,0 +1,61 @@
+# Site
+name: "Aditya Nair"
+title: "Aditya's Portfolio"
+description: "Northwestern MS in Robotics Student Portfolio"
+logo: 'assets/images/profilepic2-circular.png'
+favicon: 'assets/images/profilepic2-circular.png'
+url: 
+baseurl: 
+google_analytics:
+include: ["_pages"]
+permalink: /:title/
+
+# Authors
+authors:
+  Aditya:
+    name: Aditya Nair
+    display_name: Aditya Nair
+    gravatar:
+    email: adityanair2024@u.northwestern.edu
+    LinkedIn: https://www.linkedin.com/in/aditya-nair-33b166203/
+    description: 
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+    
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+  layout: archive
+  permalinks:
+    category: '/category/:name/'
+    
+# Pagination 
+paginate: 6
+paginate_path: /page:num/
+    
+# Other
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Adsense (change to "enabled" to activate, also your client id and ad slot. Create a new ad unit from your Adsense account to get the slot.)
+adsense: "disabled"
+adsense-data-ad-client: "ca-pub-3412143450191416"
+adsense-data-ad-slot: "1363087678"
+
+# Lazy Images ("enabled" or "disabled")
+lazyimages: "disabled"
+
+exclude: [post_template.md, changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
