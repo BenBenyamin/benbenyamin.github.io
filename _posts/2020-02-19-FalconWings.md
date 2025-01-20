@@ -4,7 +4,7 @@ title:  "Expandable Falcon Wings"
 categories: [CAD
 ]
 image: assets/images/FalconWings.gif
-featured: false
+featured: true
 hidden: false
 ---
 
