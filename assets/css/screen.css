@@ -6,10 +6,18 @@ License: https://www.wowthemes.net/freebies-license/
 :root
 {
     --background-color: rgb(43, 104, 139);
+    --background-dark: rgb(22, 60, 82);
 }
 @media screen and (min-width:1500px) {
     html { font-size:18px; } /* Increase the font size on higher resolutions */
-    .container {max-width:80%;}
+    .container 
+    {
+        max-width:80%;
+    }
+}
+body
+{
+    background-color: var(--background-color);
 }
 .mainheading {
     padding: 2rem 0rem;
@@ -65,10 +73,6 @@ pre {
     padding-top: 1.5rem;
     margin-top: 57px;
     transition: all 0.4s;
-    /* background: rgb(20, 0, 56); */
-    /* background: rgb(50, 0, 131); */
-    /* background: rgb(0, 134, 151); */
-    /* background: rgb(0, 200, 226); */
     background: var(--background-color);
 }
 
@@ -117,7 +121,7 @@ section.recent-posts {
 
 @media (min-width:992px) {
     .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: 0.8rem;
+        padding-right: 3%;
         padding-left: 0.8rem;
     }
 }
@@ -168,7 +172,7 @@ section.recent-posts {
 
 .listfeaturedtag h4.card-text,
 .listrecent h4.card-text {
-    color: rgba(0, 0, 0, .44);
+    color: rgba(0, 0, 0, 0.44);
     font-size: 0.95rem;
     line-height: 1.6;
     font-weight: 400;
@@ -314,7 +318,9 @@ span.post-read-more a:hover {
 
 .mediumnavigation .nav-item,
 .dropdown-menu {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: Righteous;
 }
 
 .mediumnavigation .search-icon {
@@ -324,14 +330,17 @@ span.post-read-more a:hover {
     cursor: pointer;
 }
 
-.mediumnavigation .navbar-brand img {
+.mediumnavigation .navbar-brand .img{
     max-height: 80px;
     margin-right: 5px;
+    margin-left: 0px;
 }
 
 .mainheading h1.sitetitle {
     font-family: Righteous;
     color: rgb(235, 235, 244);
+    font-weight: bold;
+    font-size: 200%;
 }
 .mainheading p.lead {
     font-family: Righteous;
@@ -515,13 +524,13 @@ blockquote {
 }
 
 .graybg {
-    background-color: #fafafa;
+    background-color: #a76464;
     padding: 40px 0 46px;
     position: relative;
 }
 
 .listrelated .card {
-    box-shadow: 0 1px 7px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 7px rgba(128, 25, 25, 0.05);
     border: 0;
 }
 
@@ -803,7 +812,7 @@ iframe {
 }
 
 .transpdark {
-    background: rgba(0, 0, 0, 0.75);
+    background: var(--background-dark);
     color: #fff;
 }
 
@@ -814,15 +823,16 @@ iframe {
         padding: 0;
         height: 350px;
         border-radius: 0;
-        background-image: url(../images/SGSky.png);
-        background-size: cover;
     }
 
-    .jumbotron.fortags .col-md-4 {
-        background: rgba(0, 0, 0, 0.75);
+    .jumbotron.fortags .col-md-4 .md-block
+    {
+        background-color: var(--background-dark);
+    }
+
+    .jumbotron.fortags .col-md-8 {
+        background: var(--background-color);
         /* background: rgba(255, 255, 255, 0.75); */
-        color: #fff;
-        /* color: #000000; */
     }
 
     .jumbotron.fortags .row {
@@ -834,8 +844,6 @@ iframe {
     margin-top: 3rem;
     padding: 0;
     border-radius: 0;
-    background-image: url(../images/SGSky.png);
-    background-size: cover;
 }
 
 .jumbotron.fortags a {
@@ -942,4 +950,11 @@ iframe {
 .lazyimg[data-srcset] {
     opacity: 0;
     transition: opacity .25s;
+}
+
+.navbar {
+    width: 78%;
+    margin: 0 auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
