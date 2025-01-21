@@ -979,3 +979,8 @@ iframe {
 {
     font-family: var(--headlines-font);
 }
+
+.video
+{
+    pointer-events: none;
+}
