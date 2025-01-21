@@ -28,16 +28,14 @@ License: https://www.wowthemes.net/freebies-license/
 }
 body
 {
-    background-color: var(--background-color);
-    z-index: 9999;
+    /* background-color: var(--background-color); */
+    /* background-image: url(../bg/bg-waves-darkgreen.jpeg); */
+    background: linear-gradient(to right, #334974, #145392);
 }
 .mainheading {
     padding: 2rem 0rem;
-    background: var(--background-color);;
-    /* background: rgb(0, 200, 226); */
-    /* background: rgb(0, 134, 151); */
-    /* background: rgb(50, 0, 131); */
-    /* background: rgb(6, 0, 56); */
+    /* background: var(--background-color); */
+
 }
 
 a {
@@ -85,7 +83,7 @@ pre {
     padding-top: 1.5rem;
     margin-top: 57px;
     transition: all 0.4s;
-    background: var(--background-color);
+    /* background: var(--background-color); */
 }
 
 section {
@@ -373,11 +371,8 @@ span.post-read-more a:hover {
     margin-top: 50px;
     margin-bottom: 62px;
     position: relative;
-    background: rgb(20, 0, 56);
-    /* background: rgb(50, 0, 131); */
-    /* background: rgb(0, 134, 151); */
-    /* background: rgb(0, 200, 226); */
-    background: var(--background-color);
+    
+    /* background: var(--background-color); */
 }
 
 .link-dark {
@@ -836,13 +831,14 @@ iframe {
         border-radius: 0;
     }
 
-    .jumbotron.fortags .col-md-4 .md-block
+    col-md-4 .md-block
     {
         background-color: var(--background-dark);
     }
 
     .jumbotron.fortags .col-md-8 {
-        background: var(--background-color);
+        /* background: var(--background-color); */
+        background: transparent !important;
         /* background: rgba(255, 255, 255, 0.75); */
     }
 
