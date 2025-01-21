@@ -958,3 +958,9 @@ iframe {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+@media (max-width: 767px) {
+    .navbar 
+    {
+        width: 100%; /* or revert to default */
+    }
+}
