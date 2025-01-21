@@ -61,28 +61,25 @@ ga('send', 'pageview');
 
         <!-- Begin Menu -->
 
-            <ul class="navbar-nav ml-auto">
-
-                {% if page.url == "/" %}
-                <li class="nav-item active">
-                {% else %}
-                <li class="nav-item">
-                {% endif %}
+        <ul class="navbar-nav ml-auto">
+            {% if page.url == "/" %}
+            <li class="nav-item active">
+            {% else %}
+            <li class="nav-item">
+            {% endif %}
                 <a class="nav-link" href="{{ site.baseurl }}/index.html">Projects</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="{{ '/assets/resume/resume.pdf' | relative_url }}">Resume</a> </li>
-                <li class="nav_item">
-                    <a class="nav-link" href="https://linkedin.com/in/benbenyamin">LinkedIn</a>
-                </li>
-                <li class="nav_item">
-                    <a class="nav-link" href="mailto:benbin52+jobs@gmail.com">Email</a>
-                </li>
-                
-
-                {% include search-lunr.html %}
-
-            </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ '/assets/resume/resume.pdf' | relative_url }}">Resume</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://linkedin.com/in/benbenyamin">LinkedIn</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="mailto:benbin52+jobs@gmail.com">Email</a>
+            </li>
+        </ul>
+        
 
         <!-- End Menu -->
 

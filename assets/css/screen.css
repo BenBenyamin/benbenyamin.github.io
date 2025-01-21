@@ -3,6 +3,10 @@ Template Name: Mediumish
 Copyright: Sal, WowThemes.net, https://www.wowthemes.net 
 License: https://www.wowthemes.net/freebies-license/ 
 */
+:root
+{
+    --background-color: rgb(43, 104, 139);
+}
 @media screen and (min-width:1500px) {
     html { font-size:18px; } /* Increase the font size on higher resolutions */
     .container {max-width:80%;}
@@ -65,7 +69,7 @@ pre {
     /* background: rgb(50, 0, 131); */
     /* background: rgb(0, 134, 151); */
     /* background: rgb(0, 200, 226); */
-    background:rgb(42, 40, 94)
+    background: var(--background-color);
 }
 
 section {
@@ -353,7 +357,7 @@ span.post-read-more a:hover {
     /* background: rgb(50, 0, 131); */
     /* background: rgb(0, 134, 151); */
     /* background: rgb(0, 200, 226); */
-    background: rgb(42, 40, 94);
+    background: var(--background-color);
 }
 
 .link-dark {

@@ -1,7 +1,7 @@
 # Site
-name: "Aditya Nair"
-title: "Aditya's Portfolio"
-description: "Northwestern MS in Robotics Student Portfolio"
+name: "Ben Benyamin"
+title: "Ben's Portfolio"
+description: "Portfolio - Northwestern MS in Robotics Student"
 logo: 'assets/images/profilepic2-circular.png'
 favicon: 'assets/images/profilepic2-circular.png'
 url: 
@@ -13,11 +13,9 @@ permalink: /:title/
 # Authors
 authors:
   Aditya:
-    name: Aditya Nair
-    display_name: Aditya Nair
+    name: Ben Benyamin
+    display_name: Ben Benyamin
     gravatar:
-    email: adityanair2024@u.northwestern.edu
-    LinkedIn: https://www.linkedin.com/in/aditya-nair-33b166203/
     description: 
 
 # Plugins
