@@ -1,18 +1,14 @@
 ---
 layout: post
-title:  "Multi-Agent Reinforcement Learning for Exploration, with custom Physics Simulator from scratch"
-categories: [Deep Learning, C++, CMake, ROS2/ROS, Python, PyTorch, SLAM, Simulation, Exploration, Turtlebot, Wheeled Locomotion, Machine Learning, LIDAR, Nonlinear Optimization, Controls, Data Structures, Reinforcement Learning, Motion Planning
+title:  "Whack A Mole"
+categories: [CAD
 ]
-image: assets/images/MARL.gif
-featured: false
+image: assets/images/FalconWings.gif
+featured: true
 hidden: false
 ---
 
-Deep Learning, ROS2/ROS, C++, PyTorch, SLAM, Simulation, Motion Planning, Turtlebot
-
-<br>
-
-<div align="center"><iframe width="1273" height="616" src="https://www.youtube.com/embed/jl-HGsEevnM" title="Multi-Agent Reinforcement Learning for efficient exploration, in a custom sim environment" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+CAD
 
 <br>
 
@@ -37,7 +33,6 @@ In the meanwhile, the posts on:
 - [**Maze Solver**](https://adityanairs.website/MazeSolver/)
 
 are complete and ready for viewing!
-
 
 
 
