@@ -51,6 +51,9 @@ ga('send', 'pageview');
     <a class="navbar-brand" href="{{ site.baseurl }}/">
         <img style="max-width: 30%; height: auto;" src = "{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
     </a>
+    <a class="navbar-brand" href="{{ site.baseurl }}/">
+        <h2 class="sitetitle" style="display: inline; color: black; font-weight: 800;">{{ site.name || upcase }}</h1><p style="display: inline; color: black;" class="lead">'s Portfolio</p></h2>
+    </a>
     <!-- End Logo -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -93,7 +96,7 @@ ga('send', 'pageview');
 <!-- Site Title
 ================================================== -->
 <div class="mainheading headlines">
-    <h1 class="sitetitle" style="display: inline;">{{ site.name || upcase }}</h1><p style="display: inline;" class="lead">'s Portfolio</p>
+    <!-- <h1 class="sitetitle" style="display: inline;">{{ site.name || upcase }}</h1><p style="display: inline;" class="lead">'s Portfolio</p> -->
     <p class="lead">
         {{ site.description }}
     </p>
