@@ -4,7 +4,7 @@ title:  "Purge Mask with EL Wire"
 categories: [Circuit Design
 
 ]
-image: assets/images/PurgeMask.gif
+image: _posts/Whack-A-Mole/whack_thumbnail.mp4
 featured: false
 hidden: false
 ---

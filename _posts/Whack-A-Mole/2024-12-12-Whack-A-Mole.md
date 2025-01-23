@@ -1,14 +1,21 @@
 ---
 layout: post
-title:  "Whack A Mole"
-categories: [CAD
+title:  "Whack-a-Mole Playing Robot"
+categories: [
+    ROS,
+    AprilTag,
+    OpenCV,
+    Moveit2,
+    RGBD Camera,
+
+
 ]
-image: assets/images/FalconWings.gif
+image: assets/posts/Whack-A-Mole/whack_thumbnail.mp4
 featured: true
 hidden: false
 ---
 
-CAD
+A 7-degree-of-freedom robotic arm playing Whack-a-Mole using image processing within the ROS2 ecosystem.
 
 <br>
 
