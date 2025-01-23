@@ -1,0 +1,32 @@
+```mermaid
+graph TD
+    A[RGBD-Camera] --> B[Mole detection]
+    B --> C[ROS Nodes]
+    D[RGB-Depth Camera] --> E[April Tag Localization]
+    E --> C
+    C --> F[Hammer Actuation]
+    C --> G[Motion Planner]
+    G --> H[Robot Arm]
+```
+
+```mermaid
+graph TD
+    A[RGBD-Camera] --> B[Mole detection]
+    B --> C[ROS Nodes]
+    D[RGB-Depth Camera] --> E[April Tag Localization]
+    E --> C
+    C --> F[Hammer Actuation]
+    C --> G[Motion Planner]
+    G --> H[Robot Arm]
+
+    style A fill:#163A52,stroke:#000000,stroke-width:2px,rx:15, color:white
+    style B fill:#163A52,stroke:#000000,stroke-width:2px,rx:15, color:white
+    style C fill:#163A52,stroke:#000000,stroke-width:2px,rx:15, color:white
+    style D fill:#163A52,stroke:#000000,stroke-width:2px,rx:15, color:white
+    style E fill:#163A52,stroke:#000000,stroke-width:2px,rx:15, color:white
+    style F fill:#163A52,stroke:#000000,stroke-width:2px,rx:15, color:white
+    style G fill:#163A52,stroke:#000000,stroke-width:2px,rx:15, color:white
+    style H fill:#163A52,stroke:#000000,stroke-width:2px,rx:15, color:white
+
+
+```
