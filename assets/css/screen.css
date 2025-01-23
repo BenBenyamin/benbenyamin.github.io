@@ -15,8 +15,11 @@ License: https://www.wowthemes.net/freebies-license/
     font-family: "Poppins";
     font-weight: 600;
     font-style: normal;
-    text-transform: uppercase;
+}
 
+.bold
+{
+    text-transform: uppercase;
 }
 
 @media screen and (min-width:1500px) {
