@@ -70,7 +70,7 @@ Now that everything is set up, the hammer is actuated. The process is then repea
 
 <br><br>
 
-### Group
+### Acknowledgments
 
 This was a group project, and a lot of fun! I had the pleasure to work with these guys: 
 David Khachatryan, Haodong Wang, Sairam Umakanth and Pushkar Dave.

@@ -13,9 +13,11 @@ title: Home
 
     <div class="row listrecent">
 
-        {% for post in site.posts %}
+    {% for post in site.posts %}
+        {% if post.hidden != true %}
             {% include postbox.html %}
-        {% endfor %}
+        {% endif %}
+    {% endfor %}
 
     </div>
 

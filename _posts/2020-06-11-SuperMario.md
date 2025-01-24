@@ -5,7 +5,7 @@ categories: [Lua, Data Structures, Simulation
 ]
 image: assets/images/SuperMario.gif
 featured: false
-hidden: false
+hidden: true
 ---
 
 Lua, Data Structures, Simulation

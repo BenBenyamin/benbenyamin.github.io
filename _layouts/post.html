@@ -77,14 +77,14 @@ post_class: post-template
             {% endif %}
 
             <!-- Post Date -->
-            <p>
+            <!-- <p>
             <small>
                 <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time></span>           
                 {% if page.last_modified_at %}
                 (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)
                 {% endif %}
                 </small>
-            </p>
+            </p> -->
 
             <!-- Post Categories -->
             <div class="after-post-cats">
@@ -113,7 +113,7 @@ post_class: post-template
             <!-- End Tags -->
 
             <!-- Prev/Next -->
-            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+            <!-- <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
             {% if page.previous.url %}
             <a class="prev d-block col-md-6" href="{{page.previous.url}}"> &laquo; {{page.previous.title}}</a>
             {% endif %}
@@ -121,14 +121,18 @@ post_class: post-template
             <a class="next d-block col-md-6 text-lg-right" href="{{page.next.url}}">{{page.next.title}} &raquo; </a>
             {% endif %}
             <div class="clearfix"></div>
-            </div>
+            </div> -->
             <!-- End Categories -->
 
         </div>
         <!-- End Post -->
 
     </div>
+
+    <div class="article-post" style = "font-size: 85%;">You've made it all the way here-why not reach out to me at <a href="mailto:benbin52+jobs@gmail.com">benbin52+jobs@gmail.com</a>?</div>
 </div>
+
+
 <!-- End Article
 ================================================== -->
 

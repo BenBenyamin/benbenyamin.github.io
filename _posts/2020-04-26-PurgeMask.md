@@ -4,9 +4,9 @@ title:  "Purge Mask with EL Wire"
 categories: [Circuit Design
 
 ]
-image: _posts/Whack-A-Mole/whack_thumbnail.mp4
+image: assets/posts/Whack-A-Mole/whack_thumbnail.mp4
 featured: false
-hidden: false
+hidden: true
 ---
 
 Circuit Design
