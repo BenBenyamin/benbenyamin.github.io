@@ -15,7 +15,7 @@ hidden: false
 
 **7-degree-of-freedom robotic arm playing Whack-a-Mole using computer vision within the ROS2 ecosystem.**
 
-<video autoplay controls src="{{ site.baseurl }}/assets/posts/Whack-A-Mole/whack_thumbnail.mp4" width="80%"></video>
+<video autoplay loop controls src="{{ site.baseurl }}/assets/posts/Whack-A-Mole/whack_thumbnail.mp4" width="80%"></video>
 
 The goal of this project was to develop a 7-degree-of-freedom robotic arm capable of playing the popular arcade game Whack-a-Mole, using computer vision within the ROS2 ecosystem.
 
@@ -59,7 +59,7 @@ The the was split task into different components for modularity, allowing each p
 
 ### WHAM!
 
-Now that everything is set up, the hammer is actuated. The process is then repeated.
+Now that everything is set up, the hammer is actuated. The process is then repeated for whichever mole was lit up.
 
 <br><br>
 
