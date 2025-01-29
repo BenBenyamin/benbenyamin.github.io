@@ -982,7 +982,7 @@ iframe {
     top: 0; /* Add this */
     z-index: 1000; /* Add this to keep it above other content */
     border-color: var(--background-color);
-    max-width: 1500px;
+    /* max-width: 1500px; */
     justify-content: unset !important;
 }
 @media (max-width: 767px) {
