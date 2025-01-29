@@ -20,7 +20,7 @@ hidden: false
 The goal of this project was to develop a 7-degree-of-freedom robotic arm capable of playing the popular arcade game Whack-a-Mole, using computer vision within the ROS2 ecosystem.
 
 ### The Setup
-<img src="{{ site.baseurl }}/assets/posts/Whack-A-Mole/setup-tp.png" width="80%"/>
+<img src="{{ site.baseurl }}/assets/posts/Whack-A-Mole/setup.png" width="80%"/>
 
 *Figure 1: The Setup of the robotic arm and the Whack-a-Mole board.*
 
@@ -32,7 +32,7 @@ The goal of this project was to develop a 7-degree-of-freedom robotic arm capabl
 
 ### Block Diagram
 
-<img src="{{ site.baseurl }}/assets/posts/Whack-A-Mole/block-tp.png" width="80%"/>
+<img src="{{ site.baseurl }}/assets/posts/Whack-A-Mole/block.png" width="80%"/>
 
 *Figure 2: The block diagram.*
 

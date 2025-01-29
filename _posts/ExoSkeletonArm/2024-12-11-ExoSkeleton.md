@@ -18,6 +18,8 @@ hidden: false
 
 ### Introduction
 
+**Commended by the Faculty of Engineering Evaluation Committee for outstanding performance at the 2020 Mechanical Engineering Graduation Project Exhibition.**
+
 People with muscle weakness from peripheral neurological conditions often experience temporary functional decline. Such people could include, for example, stroke survivors,people with traumatic injuries and more. Basic tasks such as grocery shopping, opening bottles, and lifting objects may become difficult or even impossible, leading to a decrease in their quality of life. The Arm Assistive Exoskeleton was created to assist these individuals in performing such tasks, aiding their recovery (by motivating them to move their arm) and improving their quality of life, making everyday activities more manageable.
 
 The objective was of this project was to design a system that allows the user to regain basic functionality back in their less functional hand . The requirements were defined to be grasping and lifting of an item with a diameter/width ranging from 0 to 100 mm and a maximum lifting weight of 1 kg. All while weighing around 1.3 kg, in order not to encumber the user too much. 
