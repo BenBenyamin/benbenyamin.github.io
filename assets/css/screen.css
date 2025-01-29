@@ -83,8 +83,6 @@ pre {
 
 .site-content {
     min-height: 60vh;
-    padding-top: 1.5rem;
-    margin-top: 57px;
     transition: all 0.4s;
     /* background: var(--background-color); */
 }
@@ -134,7 +132,7 @@ section.recent-posts {
 
 @media (min-width:992px) {
     .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: 3%;
+        padding-right: 0%;
         padding-left: 0.8rem;
     }
 }
@@ -324,6 +322,7 @@ span.post-read-more a:hover {
     font-weight: 500;
 }
 
+
 .mediumnavigation .dropdown-menu {
     border: 1px solid rgba(0, 0, 0, 0.08);
     margin: .5rem 0 0;
@@ -353,6 +352,13 @@ span.post-read-more a:hover {
     color: rgb(235, 235, 244);
     font-weight: bold;
     font-size: 200%;
+}
+
+@media (max-width: 767px) {
+    .sitetitle
+    {
+        font-size: 100%;
+    }
 }
 .mainheading p.lead {
     font-family: var(--headlines-font);
@@ -962,19 +968,28 @@ iframe {
     transition: opacity .25s;
 }
 
+.fixed-top{
+    padding: 15px;
+    margin: 15px;
+}
+/* .main-container */
 .navbar {
-    width: 78.5%;
+    width: 78vw;
     margin: 0 auto;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    border-width: 20px;
+    position: fixed; /* Add this */
+    top: 0; /* Add this */
+    z-index: 1000; /* Add this to keep it above other content */
     border-color: var(--background-color);
+    max-width: 1500px;
+    justify-content: unset !important;
 }
 @media (max-width: 767px) {
     .navbar 
     {
-        width: 100%; /* or revert to default */
         height: 10%;
+        position: unset;
     }
 }
 

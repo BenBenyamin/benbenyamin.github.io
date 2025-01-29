@@ -43,55 +43,67 @@ ga('send', 'pageview');
 
 <!-- Begin Menu Navigation
 ================================================== -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
 
-    <!-- <div class="container pr-0"> -->
+<div class="main-container">
 
-    <!-- Begin Logo -->
-    <a class="navbar-brand" href="{{ site.baseurl }}/">
-        <img style="max-width: 30%; height: auto;" src = "{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
-    </a>
-    <a class="navbar-brand" href="{{ site.baseurl }}/">
-        <h2 class="sitetitle" style="display: inline; color: black; font-weight: 800;">{{ site.name || upcase }}</h1><p style="display: inline; color: black;" class="lead">'s Portfolio</p></h2>
-    </a>
-    <!-- End Logo -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse headlines" id="navbarMediumish">
-        <!-- Begin Menu -->
 
-        <ul class="navbar-nav ml-auto">
-            {% if page.url == "/" %}
-            <li class="nav-item active">
-            {% else %}
-            <li class="nav-item">
-            {% endif %}
-                <a class="nav-link" href="{{ site.baseurl }}/index.html">Projects</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ '/assets/resume/resume.pdf' | relative_url }}">Resume</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://linkedin.com/in/benbenyamin">LinkedIn</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="mailto:benbin52+jobs@gmail.com">Email </a>
-            </li>
-        </ul>
-        
-
-        <!-- End Menu -->
-
-    <!-- </div> -->
-</nav>
 <!-- End Navigation
 ================================================== -->
 
 <div class="site-content">
 
 <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white mediumnavigation nav-down">
+
+        <!-- <div class="container pr-0"> -->
+    
+        <!-- Begin Logo -->
+        <a class="navbar-brand" style="max-width: 50%" href="{{ site.baseurl }}/">
+            <img style="max-width: 40%; height: auto;" src = "{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
+        </a>
+        <a class="navbar-brand" href="{{ site.baseurl }}/">
+            <!-- <h2 class="sitetitle" style="display: inline; color: black; font-weight: 800;">{{ site.name || upcase }}</h1><p style="display: inline; color: black;" class="lead">'s Portfolio</p></h2> -->
+            <h2 class="sitetitle" style="display: inline; color: black; font-weight: 800;">
+                {{ site.name || upcase }}
+            </h2>
+            <p style="display: inline; color: black;" class="lead">
+                's Portfolio
+            </p>
+            
+        </a>
+        <!-- End Logo -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse headlines" id="navbarMediumish">
+            <!-- Begin Menu -->
+    
+            <ul class="navbar-nav ml-auto">
+                {% if page.url == "/" %}
+                <li class="nav-item active">
+                {% else %}
+                <li class="nav-item">
+                {% endif %}
+                    <a class="nav-link" href="{{ site.baseurl }}/index.html">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ '/assets/resume/resume.pdf' | relative_url }}">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://linkedin.com/in/benbenyamin">LinkedIn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mailto:benbin52+jobs@gmail.com">Email </a>
+                </li>
+            </ul>
+            
+    
+            <!-- End Menu -->
+    
+        <!-- </div> -->
+    </nav>
 
 <!-- Site Title
 ================================================== -->
@@ -107,6 +119,7 @@ ga('send', 'pageview');
 <div class="main-content">
     {{ content }}
 </div>
+
 
 <!-- Categories Jumbotron
 ================================================== -->
@@ -166,6 +179,6 @@ ga('send', 'pageview');
 {% if page.layout == 'post' %}
 <script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>
 {% endif %}
-
+</div>
 </body>
 </html>
