@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Arm Assistive Exoskeleton"
+name:   "exoskeleton"
 categories: [
     SolidWorks,
     CAD,

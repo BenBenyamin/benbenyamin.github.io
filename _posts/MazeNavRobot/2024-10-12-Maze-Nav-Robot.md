@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Wheeled Robot Navigating a Maze"
+name : "maze"
 categories: [
     Mechatronics,
     Microcontrollers,

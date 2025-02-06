@@ -1,15 +1,12 @@
 ---
 layout: post
-title:  "Point Cloud Based Object Classification"
-name: "pointnet"
+title:  "Path Finding in a 2D environment for a robot"
+name:   "pathfinding"
 categories: [
-    PyTorch,
     Python,
-    Deep Learning,
-    IssacSim,
 
 ]
-image: assets/posts/PointNet/thumbnail.mp4
+image: assets/posts/Pathfinding/thumbnail.mp4
 featured: true
 hidden: false
 ---

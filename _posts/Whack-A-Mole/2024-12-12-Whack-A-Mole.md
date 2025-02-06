@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Robotic Arm Playing Whack-a-Mole"
+name :  "whack"
 categories: [
     ROS,
     AprilTag,
