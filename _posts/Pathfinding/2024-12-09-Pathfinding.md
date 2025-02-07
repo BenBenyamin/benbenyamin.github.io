@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Path Finding in a 2D environment for a robot"
+title:  "Path Finding in a 2D Environment for a Robot"
 name:   "pathfinding"
 categories: [
     Python,
@@ -11,59 +11,57 @@ featured: true
 hidden: false
 ---
 
-**Point Cloud information is very common in robotics , as it is often part of how robots see the world. In this project, a PyTorch model was trained to identify classes using Point Cloud data.**
+**Pathfinding is crucial for robot navigation, allowing robots to move through their environment. In this project, A* algorithm was used to help a robot navigate obstacles and reach its goal while considering its size.**
 
-<video autoplay loop controls src="{{ site.baseurl }}/assets/posts/PointNet/thumbnail.mp4" width="80%"></video>
+<video autoplay loop controls src="{{ site.baseurl }}/assets/posts/Pathfinding/thumbnail.mp4" width="80%"></video>
 
-### Introduction
+### Task Overview
 
-RGB images are commonly used for object classification, but they have limited spatial context. In contrast, point clouds capture spatial geometry. Robots, equipped with sensors that capture point clouds, often see objects that are partially obscured. Classifying them helps the robot navigate and perform tasks.
+The goal was to help a 2D robot navigate an obstacle course. The robot needed to reach a target within an environment filled with obstacles while factoring in its size.
 
-### Dataset
+The obstacle course was manually mapped by recording the coordinates of each obstacle relative to a reference point (x0, y0). For circular obstacles, the center coordinates were noted, while complex shapes were broken down into smaller rectangular obstacles.
 
-The dataset is composed of as follows : List of 3D points (size of 1024 each) and their RGB values corresponding to a label (`(x,y,z,R,G,B) -> label`).
+For example, the 'L' shape in the bottom-left corner was represented by two rectangles: one with a width of 11.5 meters and height of 1 meter, and the other with a width of 1 meter and height of 5.5 meters, as shown in Figure 1.
 
-An example of the format for one data point is as shown below:
-```
-[(0.2,1.2,0.4,0,126,90),(0.1,2.2,1.4,12,10,120),(1.3,1.2,0.12,20,0,130),....] -> Banana
-```
-The dataset contains these classes (5 in total) : Apple , banana , bottle , bowl and cup.
-The dataset was generated using Isaac Sim, a robotic simulator, to create more realistic and challenging data for real-world applications. Traditional point cloud datasets of object models often fail to replicate real-world scenarios, where RGB-D cameras or LiDAR sensors cannot capture the entire point cloud of an object. To address this, a dataset was generated using perception inputs from such sensors.
-Object models scanned from the real world through the [OmniObject3D](https://omniobject3d.github.io/) dataset were sourced. These objects were randomly placed in Isaac Sim, where RGB-D images were continuously captured along a spherical trajectory.
-The Isaac-Sim-generated data includes RGB and depth images (for converting into point clouds), segmentation masks for each object, and segmentation labels mapping RGBA values to object classes. It also provides camera intrinsics to convert depth images into accurate point clouds.
-                
-<img src = "{{ site.baseurl }}/assets/posts/PointNet/dataset.png" width="80%">
+<img src="{{ site.baseurl }}/assets/posts/Pathfinding/obstacles.png" width="80%"/>
 
-*Top row: The image from IssacSim, Middle Row:  Depth Information, Bottom Row: Segmentation data*
+*Figure 1 - Mapping the Obstacle Space*
 
-### Network Structure
+## Defining Obstacle Objects
 
-The network was built on top of the PointNet network architecture ([Qi, C.R. et al., 2016. PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation](https://doi.org/10.48550/arXiv.1612.00593)), with added RGB data. The order of the points does not matter, as it the are pretty random, so some kind of a symmetric function is need (max pooling) and also the translation and rotation of an object should not matter so additional transformation layers were added (T-Net).
+To enable path planning, two obstacle objects were created: `RoundObstacle` and `RectangleObstacle`, implemented in the attached `Obstacle.py` file. Both inherit from the `Obstacle` object. The `RoundObstacle` contains the center's location and radius, while the `RectangleObstacle` includes height, width, and the bottom-left corner coordinates. Each object features the following functions:
 
-<img src = "{{ site.baseurl }}/assets/posts/PointNet/pointNetOriginal.png" width="80%">
+1. **`isColliding(self, point)`** – Checks if a point collides with the obstacle.
+2. **`isLineColliding(self, line)`** – Checks if a line intersects with the obstacle.
+3. **`plot(self, **kwargs)`** – Plots the object using `matplotlib`.
 
-*The original PointNet structure, as seen in Qi, [C.R. et al., 2016](https://doi.org/10.48550/arXiv.1612.00593)*
+The `Line` object calculates the line's slope and length and includes functions for calculating its value at specific points and checking if a point lies on the line.
 
-The canonical PointNet architecture is extended by incorporating RGB color channel information from the point cloud data. The additional 3 dimensions are processed through a 4-layer MLP, with max pooling applied to remove order bias. The resulting feature vector is then concatenated with the PointNet feature vector for classification.
+To account for the robot’s radius, obstacles are "inflated" by this radius. Circular obstacles have their radius increased, while rectangular obstacles have each side extended with the robot’s radius, and corners are rounded using circular obstacles, resulting in a shape resembling a rectangle with rounded corners.
 
-<img src = "{{ site.baseurl }}/assets/posts/PointNet/PointNet.png" width="80%">
+<img src="{{ site.baseurl }}/assets/posts/Pathfinding/inflate.png" width="80%"/>
 
-*The modified PointNet structure, adding the RGB values.*
+*Figure 2: Top - Rectangular Obstacle, Bottom - "Inflated" Rectangular Obstacle*
 
-### (Drumroll...) The Results
+An `InflatedRectangleObstacle` object is a list of 5 `RectangleObstacle` (the center and sides with the robot’s radius) and 4 `RoundObstacle` at the corners. It uses the same collision-checking functions as the individual obstacles. The main file creates lists of both the regular and inflated obstacles, with the `isColl(point)` and `isLineColl(line)` functions checking for collisions against the inflated obstacles.
 
-The model achieved 80% accuracy on the training set and 70% on the test set. Here is the learning curve:
+<img src="{{ site.baseurl }}/assets/posts/Pathfinding/inflated_obst.png" width="80%"/>
 
-<img src = "{{ site.baseurl }}/assets/posts/PointNet/train.png" width="80%">
+*Figure 3: Left - Obstacle Map, Right - Inflated Obstacle Map*
 
-*The Learning curves.*
+## Calculating the Shortest Path with the A* Algorithm
 
-### Comparison with other Methods (KNN)
+To find the shortest path between the start and end points, the A* algorithm was used. This algorithm guarantees finding the shortest path between two nodes in a graph. Since the given map is continuous, it was discretized into points forming a graph—where the nodes are the points, and the edges are the connections to adjacent points. The pseudocode for A* can be found here: [A* Search Algorithm Pseudocode](https://en.wikipedia.org/wiki/A*_search_algorithm#Pseudocode).
 
-Is this fancy neural network worth the hassle? Did we go way above our head? To test this, the network was put head to head against a more traditional method, which was chosen to be K nearest neighbors (KNN). KNN was practically useless , as it gave a accuracy of 27%, which is almost as good as just guessing (there are 5 classes).
+## Path Smoothing
 
-### Acknowledgments
+Since the path is discrete, it can be shortened by connecting two points with a straight line, as long as no collision occurs. A loop checks if each point can be connected to the farthest previous point without causing a collision, using the `isLineColl` function. This ensures the start and end points are included, as they are added before the loop.
 
-This was a group project, and was done with these dashing individuals:
+<img src="{{ site.baseurl }}/assets/posts/Pathfinding/smooth_unsmooth.png" width="80%"/>
 
-Zhengyang Kris Weng and Zhengxiao Han.
+*Figure 4: Left - The Calculated Path, Right - The Smoothed Path  
+In Red – the Start and End Points*
+
+## Viola!
+
+Now the robot has a set of points to move toward!
