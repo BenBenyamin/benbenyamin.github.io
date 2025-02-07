@@ -15,7 +15,8 @@ hidden: false
 
 **The arm assistive exoskeleton is worn on the arm and forearm, providing assistive force to help with lifting, reaching, grasping, holding, and carrying. It is designed for individuals with muscle weakness from peripheral neurological conditions, such as traumatic or neuropathic injuries, which cause upper limb dysfunction..**
 
-<video autoplay loop controls mute src="{{ site.baseurl }}/assets/posts/ExoSkeletonArm/thumbnail.mp4" width="80%"></video>
+<video autoplay loop controls muted src="{{ site.baseurl }}/assets/posts/ExoSkeletonArm/thumbnail.mp4" width="80%"></video>
+`
 
 ### Introduction
 

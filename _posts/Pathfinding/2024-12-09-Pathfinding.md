@@ -13,7 +13,7 @@ hidden: false
 
 **Pathfinding is crucial for robot navigation, allowing robots to move through their environment. In this project, A* algorithm was used to help a robot navigate obstacles and reach its goal while considering its size.**
 
-<video autoplay loop controls src="{{ site.baseurl }}/assets/posts/Pathfinding/thumbnail.mp4" width="80%"></video>
+<video autoplay loop controls muted src="{{ site.baseurl }}/assets/posts/Pathfinding/thumbnail.mp4" width="80%"></video>
 
 ### Task Overview
 

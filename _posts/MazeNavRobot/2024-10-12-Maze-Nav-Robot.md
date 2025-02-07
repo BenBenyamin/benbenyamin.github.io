@@ -14,7 +14,7 @@ hidden: false
 
 **Wheeled robot navigating a maze using simple sensors, following the right-hand wall.**
 
-<video autoplay loop controls src="{{ site.baseurl }}/assets/posts/MazNavRobot/thumbnail.mp4" width="80%"></video>
+<video autoplay loop controls muted src="{{ site.baseurl }}/assets/posts/MazNavRobot/thumbnail.mp4" width="80%"></video>
 
 The goal of this project was to make the wheeled robot shown above solve any given maze using sensors.
 
