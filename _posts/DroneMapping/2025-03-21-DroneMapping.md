@@ -26,7 +26,7 @@ This project was all about getting a drone to map the world around it using a 2D
 
 A 3D LiDAR was definitely an option, and it's commonly used for mapping applications. However, I wanted something simpler and more lightweight. A 2D LiDAR provided a good balance—it’s easier to integrate, requires less processing power, and still gives a useful overview of the surroundings. Given the outdoor conditions and network limitations, keeping things simple made the whole system more efficient and practical for real-time mapping.
 
-### Overview  
+### Project Outline  
 
 <img src="{{ site.baseurl }}/assets/posts/DroneMapping/Diagram.png" width="60%">
 
