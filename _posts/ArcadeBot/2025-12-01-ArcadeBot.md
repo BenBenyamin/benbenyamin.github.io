@@ -18,7 +18,7 @@ hidden: false
 
 **Can a physical robot play Atari 2600 games? PPO training within a Sim2Real framework enables Stretch 3 robot to overcome real-world delays, inertia, and noisy action transitions.**
 
-<video autoplay loop controls muted src="{{ site.baseurl }}/assets/posts/ArcadeBot/thumbnail.mp4" width="80%"></video>
+<video autoplay loop controls muted src="{{ site.baseurl }}/assets/posts/ArcadeBot/thumbnail-verbose.mp4" width="80%"></video>
 
 
 ### Introduction
@@ -39,73 +39,47 @@ The setup includes:
 
 1. An Arcade Joystick (8BitDo's Arcade Stick)
 
-<video autoplay loop muted src="{{ site.baseurl }}/assets/posts/ArcadeBot/8bitdo.mp4" width="50%"></video>
-
 2. Hello Robot Stretch 3
 
-<img src="{{ site.baseurl }}/assets/posts/ArcadeBot/stretch-3.png" width="40%">
-
+<img src="{{ site.baseurl }}/assets/posts/ArcadeBot/setup.png" width="50%">
+<br>
 
 The full setup looks as follows:
 
 <video autoplay loop muted src="{{ site.baseurl }}/assets/posts/ArcadeBot/setup_overview.mp4" width="80%"></video>
 <br>
 
-<style>
-/* Center any Mermaid diagram placed inside .diagram-wrap */
-.diagram-wrap {
-  display: flex;
-  justify-content: center;   /* horizontal centering */
-}
-.diagram-wrap pre.mermaid,
-.diagram-wrap .mermaid {
-  display: inline-block;     /* allow auto margins to work if needed */
-  margin: 0 auto;
-}
-.diagram-wrap .mermaid svg {
-  display: block;            /* kill stray inline gaps */
-  margin: 0 auto;            /* extra safety */
-}
-</style>
-
-<div class="diagram-wrap">
-  <pre class="mermaid">
-flowchart LR
-  PongScreen["Pong Frame"] --> Policy["RL Policy"]
-  Policy --> JoystickCmds["Joystick Commands"]
-  JoystickCmds --> Stretch3["Stretch 3 Robot"]
-  Stretch3 --> ArcadeJoystick["Arcade Joystick"]
-  ArcadeJoystick --> Emulator["Atari Emulator (Stella)"]
-  Emulator --> PongScreen
-  </pre>
-</div>
-
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true });
-</script>
-
-<br>
 <br>
 
-## The "Wrong" Approach
+## Statistical Model The (Approach Taken)
+
+The approach taken is stochastic. In real life, the robot takes time to move the joystick — it has inertia. The joystick has to move through transient states, so instead of a double-ended queue, the delay was modeled as a sequence of actions that are being piped into the environment.
+
+For example, whenever the policy wants to go "up" and the joystick is in the "down" position, the environment is fed a sequence of actions: for some amount of time,
+it repeats the current action ("down") and then the neutral position ("no-op") for another period of time. Not changing the state is not penalized. The timing was taken from real-life measurements.
+
+<img src="{{ site.baseurl }}/assets/posts/ArcadeBot/my_app.png" width="50%">
+
+The movement from any state to the neutral one was measured and discretized: the delay measured was ~300 ms with a standard deviation of ~50 ms, so that was converted into 9 frames @ 30 FPS.
+The challenge here was the discretization of the actions, as the joystick position and the game actions are discrete while the robot lives in the real world.
+
+## Delayed Action Queue (The "Wrong" Approach)
 
 I refer to this approach as "wrong" because it is the one I have seen in the literature. When looking up "delayed reinforcement learning," most work models the delay as an action buffer (a double-ended queue) of some fixed size: whenever the policy wants to take an action, that action is pushed into the queue and ultimately executed after the previous actions have been applied.
+
 This does not represent physical robots for a simple reason: two opposing actions can still be taken one after the other, even with the queue. A simple example is the case in which a sequence of "UP" and "DOWN" actions is fed into the environment indefinitely. Given enough steps, the actions taken in such an environment would be "UP, DOWN, UP, DOWN, ..." even though the queue exists.
+
+<img src="{{ site.baseurl }}/assets/posts/ArcadeBot/bad_app.png" width="100%">
+
+
 There would be a time difference between whenever the policy wanted to take these actions and when they are executed, but this setup still allows sharp changes in actions. That does not exist in real life, because the time between environment steps is very small (~33 ms @ 30 FPS), which is much smaller than the time that the robot takes to move the arcade stick in real life.
+
+## Comparison Between the Two Approaches
 
 <video autoplay loop controls muted src="{{ site.baseurl }}/assets/posts/ArcadeBot/dqueue.webm" width="50%"></video>
 
 In the example above with the queue, the UP and DOWN actions alternate repeatedly, separated by a 1-second delay.  
 
-
-## The Approach Taken
-
-The approach taken is stochastic. In real life, the robot takes time to move the joystick — it has inertia. The joystick has to move through transient states, so instead of a double-ended queue, the delay was modeled as a sequence of actions that are being piped into the
-environment. For example, whenever the policy wants to go "up" and the joystick is in the "down" position, the environment is fed a sequence of actions: for some amount of time,
-it repeats the current action ("down") and then the neutral position ("no-op") for another period of time. Not changing the state is not penalized. The timing was taken from real-life measurements.
-The movement from any state to the neutral one was measured and discretized: the delay measured was ~300 ms with a standard deviation of ~50 ms, so that was converted into 9 frames @ 30 FPS.
-The challenge here was the discretization of the actions, as the joystick position and the game actions are discrete while the robot lives in the real world.
 
 <video autoplay loop controls muted src="{{ site.baseurl }}/assets/posts/ArcadeBot/inertia.webm" width="50%"></video>
 
@@ -114,11 +88,33 @@ This is the same setting as before, but now with the transient states; it looks 
 To make this more concrete, each joystick transition is implemented as a short random sequence of phases.
 For example:
 
-| Phase                      | Frames (example for one transition) | Action applied to the game           |
-| -------------------------- | ----------------------------------- | ------------------------------------ |
-| Hold current state         | 0–3                                 | Current joystick action (e.g., DOWN) |
-| Transition through neutral | 4–7                                 | NO-OP (neutral position)             |
-| New state reached          | 8+                                  | Target joystick action (e.g., UP)    |
+<table style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr>
+      <th style="border: 3px solid #999; padding: 6px;">Phase</th>
+      <th style="border: 3px solid #999; padding: 6px;">Frames (example for one transition)</th>
+      <th style="border: 3px solid #999; padding: 6px;">Action applied to the game</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 3px solid #999; padding: 6px;">Hold current state</td>
+      <td style="border: 3px solid #999; padding: 6px;">0–3</td>
+      <td style="border: 3px solid #999; padding: 6px;">Current joystick action (e.g., DOWN)</td>
+    </tr>
+    <tr>
+      <td style="border: 3px solid #999; padding: 6px;">Transition through neutral</td>
+      <td style="border: 3px solid #999; padding: 6px;">4–7</td>
+      <td style="border: 3px solid #999; padding: 6px;">NO-OP (neutral position)</td>
+    </tr>
+    <tr>
+      <td style="border: 3px solid #999; padding: 6px;">New state reached</td>
+      <td style="border: 3px solid #999; padding: 6px;">8+</td>
+      <td style="border: 3px solid #999; padding: 6px;">Target joystick action (e.g., UP)</td>
+    </tr>
+  </tbody>
+</table>
+<br>
 
 
 Here, N_hold and N_total are derived from a sampled continuous delay, discretized into frames, so each transition has slightly different timing.
@@ -153,20 +149,47 @@ The figure above visualizes the mapping from continuous delay values to their co
 
 Training PPO in the "vanilla" environment takes around 3M steps, using Stable-Baselines3’s default settings.
 Training the policy under a constant delay value of around 15–20 environment steps takes a marginally longer time of around 50M steps.
+
+
 In this case, PPO was not the best performing, and different algorithms were tested such as DQN, SAC, Recurrent PPO and Quantile Regression (QR)-DQN.
 In this setup, Recurrent PPO (PPO based on LSTMs) and QR-DQN performed the best, but still took around 50M steps to train (~15× vs the vanilla case). However, as mentioned above, this did not incorporate any domain randomization and did not perform well on the real robot.
+
+
 Finally, after introducing the stochastic delay model with domain randomization, PPO was the only algorithm that worked, while the rest (everything in Stable-Baselines3's arsenal essentially) did not show meaningful improvement during training.
-The training took significantly longer — around 500M steps. This is because the policy now cannot take anything about the timing for granted, and thus the whole task is less easily solvable. Both the algorithm (PPO) and the emulator (Stella) run on the CPU, so this took a very long time in real life to train, because it did not benefit from GPUs at all.
+The training took significantly longer — around 500M steps. This is because the policy now cannot take anything about the timing for granted, and thus the whole task is less easily solvable. 
+
+
+Both the algorithm (PPO) and the emulator (Stella) run on the CPU, so this took a very long time in real life to train, because it did not benefit from GPUs at all.
 A small summary of the approximate final episode rewards for the different setups is shown below:
 
-| Environment setup            | Approx. final episode reward |
-| ---------------------------- | ---------------------------- |
-| Vanilla Pong (no delay)      | ~20                          |
-| Constant delay (15–20 steps) | ~18                          |
-| GMM / randomized delay       | ~14                          |
+<table style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr>
+      <th style="border: 3px solid #999; padding: 6px;">Environment setup</th>
+      <th style="border: 3px solid #999; padding: 6px;">Approx. final episode reward</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 3px solid #999; padding: 6px;">Vanilla Pong (no delay)</td>
+      <td style="border: 3px solid #999; padding: 6px;">~20</td>
+    </tr>
+    <tr>
+      <td style="border: 3px solid #999; padding: 6px;">Constant delay (15–20 steps)</td>
+      <td style="border: 3px solid #999; padding: 6px;">~18</td>
+    </tr>
+    <tr>
+      <td style="border: 3px solid #999; padding: 6px;">GMM / randomized delay</td>
+      <td style="border: 3px solid #999; padding: 6px;">~14</td>
+    </tr>
+  </tbody>
+</table>
 
+<br>
 Note the the max reward for Pong is 21 , and the reward represents the difference between the scores.
 <br>
+
+<img src="{{ site.baseurl }}/assets/posts/ArcadeBot/training.png" width="100%">
 
 ## Results
 
