@@ -1,12 +1,12 @@
 # Site
 name: "Ben Benyamin"
 title: "Ben's Portfolio"
-description: "Northwestern MS in Robotics Student"
+description: "Robotics Engineer"
 logo: 'assets/me.png'
 favicon: 'assets/me.png'
 url: 
 baseurl: 
-google_analytics:
+google_analytics: G-0JYS6JDW0W
 include: ["_pages"]
 permalink: /:title/
 
@@ -35,7 +35,7 @@ jekyll-archives:
     category: '/category/:name/'
     
 # Pagination 
-paginate: 6
+paginate: 1000
 paginate_path: /page:num/
     
 # Other

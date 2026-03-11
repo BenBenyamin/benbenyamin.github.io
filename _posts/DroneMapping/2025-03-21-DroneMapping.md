@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Drone Mapping with 2D LiDAR"
+title:  "PX4 Autonomous UAV with LiDAR-Based SLAM"
 name:   "drone-mapping"
 categories: [
     ROS2,

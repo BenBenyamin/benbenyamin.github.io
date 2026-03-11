@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Arcade Playing Robot - Real Life Delayed Reinforcement Learning "
+title:  "Sim2Real Reinforcement Learning for an Arcade-Playing Robot"
 name:   "arcadebot"
 categories: [
     Python,
@@ -8,7 +8,7 @@ categories: [
     Reinforcement Learning,
     Sim2Real,
     PPO,
-    Stable baseline3,
+    Stable Baseline 3,
     Domain Randomization
 ]
 image: assets/posts/ArcadeBot/thumbnail.mp4

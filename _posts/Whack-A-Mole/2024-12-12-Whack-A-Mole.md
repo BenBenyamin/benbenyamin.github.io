@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Robotic Arm Playing Whack-a-Mole"
+title:  "Whack-a-Mole Playing Robot"
 name :  "whack"
 categories: [
     ROS,
