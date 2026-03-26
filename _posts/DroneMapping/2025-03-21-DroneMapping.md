@@ -3,10 +3,11 @@ layout: post
 title:  "PX4 Autonomous UAV with LiDAR-Based SLAM"
 name:   "drone-mapping"
 categories: [
-    ROS2,
+    ROS,
+    PX4,
     LiDAR,
     Mapping,
-    Drone
+    UAV,
 ]
 image: assets/posts/DroneMapping/thumbnail.mp4
 featured: true
@@ -28,7 +29,7 @@ A 3D LiDAR was definitely an option, and it's commonly used for mapping applicat
 
 ### Project Outline  
 
-<img src="{{ site.baseurl }}/assets/posts/DroneMapping/Diagram.png" width="60%">
+<img src="{{ site.baseurl }}/assets/posts/DroneMapping/Diagram.png" style="width:120%; max-width:none;">
 
 *A block diagram of the components.*
 
@@ -66,12 +67,11 @@ Everything was mounted on the drone with stability in mind. The LiDAR sat on top
 
 After some rough early tests (with plenty of drifting and data drops), things finally started coming together. A portable router made a huge difference in improving network stability, allowing for much better outdoor mapping. The drone successfully mapped places like Shakespeare Garden and Howes Chapel, capturing a solid representation of the environment. I mapped [Howes Chapel](https://maps.app.goo.gl/XwsJKi22oduVkMoc8), a spot I really enjoy spending time in. Once I dialed in the right mapping parameters (thank you, ROS bag) the system became pretty reliable. Now, as long as the drone can fly safely, it can map just about anywhere.
 
-<img src="{{ site.baseurl }}/assets/posts/DroneMapping/full-building.png" width="60%">  
+<img src="{{ site.baseurl }}/assets/posts/DroneMapping/full-building.png" width="100%">  
 
-*The complete map real of Howes Chapel.*
+*Howes Chapel (left; source: Google Earth) and the complete map (right).*
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BWT-F1g8_w0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N6pbkjxuk3A?si=XjOMkvHCeeggd51Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 *The complete video for the map above.*
 
 ### Takeaways and Conclusions  
